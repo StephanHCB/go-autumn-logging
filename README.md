@@ -33,6 +33,8 @@ The application can then pull in the relevant go-autumn-logging submodule, such 
 If you are writing a library, import **only** this module in your dependencies, none of the other go-autumn-logging-*
 modules that actually bring in a logging library.
 
+In your testing code, call `aulogging.SetupNoLoggerForTesting()` to avoid the nil pointer dereference. 
+
 ### Application Authors
 
 If you are writing an application, import one of the modules that actually bring in a logging library, 
