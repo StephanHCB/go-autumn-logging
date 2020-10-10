@@ -56,3 +56,14 @@ func someFunction(ctx context.Context) {
     aulogging.Logger.Ctx(ctx).Warn("something bad has happened")
 }
 ```
+
+There are convenience functions for those who prefer the function call with arguments style,
+though it is a bit less flexible:
+
+```
+import "github.com/StephanHCB/go-autumn-logging"
+
+func someFunction(ctx context.Context) {
+    aulogging.Warn(ctx, "something bad has happened")
+}
+```
