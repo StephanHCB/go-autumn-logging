@@ -66,3 +66,9 @@ type LeveledLoggingImplementation interface {
 	Printf(format string, v ...interface{})
 }
 
+// a function used to obtain a request id from a context
+//
+// Note: access to the singleton instance is provided in the Logger global variable.
+//
+// used for tracing integration
+type RequestIdRetrieverFunc func(context.Context) string
