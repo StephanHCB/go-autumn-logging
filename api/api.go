@@ -2,20 +2,20 @@ package auloggingapi
 
 import "context"
 
-// Top Level entry point to our logging API.
+// LoggingImplementation is the top level entry point to our logging API.
 //
 // Note: access to the singleton instance is provided in the Logger global variable.
 //
 // See convenience.go for some examples of how to use these interfaces.
 type LoggingImplementation interface {
-	// Obtain a context aware logger.
+	// Ctx returns a context aware logger.
 	//
 	// You should use this if you have a context.
 	//
 	// Behaviour is implementation dependent, usually the logger will be taken from the context.
 	Ctx(ctx context.Context) ContextAwareLoggingImplementation
 
-	// Obtain a context aware logger using a blank context.
+	// NoCtx returns a context aware logger using a blank context.
 	//
 	// Use this if you do not have a context (but if it's your own code, you really should).
 	NoCtx() ContextAwareLoggingImplementation
@@ -66,7 +66,7 @@ type LeveledLoggingImplementation interface {
 	Printf(format string, v ...interface{})
 }
 
-// a function used to obtain a request id from a context
+// RequestIdRetrieverFunc is the type of a function used to obtain a request id from a context
 //
 // Note: access to the singleton instance is provided in the Logger global variable.
 //

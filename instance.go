@@ -2,7 +2,7 @@ package aulogging
 
 import "github.com/StephanHCB/go-autumn-logging/api"
 
-// the singleton instance of ContextAwareLoggingImplementation for use by any
+// Logger is the singleton instance of ContextAwareLoggingImplementation for use by any
 // library and application to access the logger.
 //
 // See convenience.go for some examples of how to emit log entries.
@@ -19,7 +19,7 @@ import "github.com/StephanHCB/go-autumn-logging/api"
 //
 var Logger auloggingapi.LoggingImplementation
 
-// the singleton instance of RequestIdRetriever for use by implementations to obtain
+// RequestIdRetriever is a singleton instance for use by implementations to obtain
 // a tracing request id from a context.
 //
 // This global singleton is assigned outside this module. Assigning it is optional.
