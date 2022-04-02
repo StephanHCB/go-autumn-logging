@@ -34,3 +34,10 @@ var Logger auloggingapi.LoggingImplementation
 //
 //noinspection GoUnusedGlobalVariable
 var RequestIdRetriever auloggingapi.RequestIdRetrieverFunc
+
+// DefaultRequestIdValue lets you override the default value for the request id.
+//
+// This is useful for console logging if you want your request ids to align.
+//
+//noinspection GoUnusedGlobalVariable
+var DefaultRequestIdValue = ""
