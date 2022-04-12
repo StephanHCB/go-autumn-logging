@@ -38,7 +38,8 @@ In your testing code, call `aulogging.SetupNoLoggerForTesting()` to avoid the ni
 ### Application Authors
 
 If you are writing an application, import one of the modules that actually bring in a logging library, 
-such as go-autumn-logging-zerolog. These modules will provide an implementation and place it in the Logger variable.
+such as [go-autumn-logging-zerolog](https://github.com/StephanHCB/go-autumn-logging-zerolog). 
+These modules will provide an implementation and place it in the Logger variable.
 
 Of course, you can also provide your own implementation of the `LoggingImplementation` interface, just
 set the `Logger` global singleton to an instance of your implementation.
@@ -53,12 +54,12 @@ Context aware logging is now as simple as:
 import "github.com/StephanHCB/go-autumn-logging"
 
 func someFunction(ctx context.Context) {
-    aulogging.Logger.Ctx(ctx).Warn("something bad has happened")
+    aulogging.Logger.Ctx(ctx).Warn().Print("something bad has happened")
 }
 ```
 
-There are convenience functions for those who prefer the function call with arguments style,
-though it is a bit less flexible:
+There are convenience functions for those who prefer the function call with arguments style.
+This does the same thing as above:
 
 ```
 import "github.com/StephanHCB/go-autumn-logging"

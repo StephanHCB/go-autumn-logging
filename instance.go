@@ -1,6 +1,8 @@
 package aulogging
 
-import "github.com/StephanHCB/go-autumn-logging/api"
+import (
+	"github.com/StephanHCB/go-autumn-logging/api"
+)
 
 // Logger is the singleton instance of ContextAwareLoggingImplementation for use by any
 // library and application to access the logger.
@@ -41,3 +43,8 @@ var RequestIdRetriever auloggingapi.RequestIdRetrieverFunc
 //
 //noinspection GoUnusedGlobalVariable
 var DefaultRequestIdValue = ""
+
+// LogEventCallback lets you set up a callback that is called for every log event about to be written
+//
+//noinspection GoUnusedGlobalVariable
+var LogEventCallback auloggingapi.LogEventCallbackFunc

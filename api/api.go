@@ -71,4 +71,10 @@ type LeveledLoggingImplementation interface {
 // Note: access to the singleton instance is provided in the Logger global variable.
 //
 // used for tracing integration
-type RequestIdRetrieverFunc func(context.Context) string
+type RequestIdRetrieverFunc func(ctx context.Context) string
+
+// LogEventCallbackFunc is the type of a callback function you can provide to receive
+// a callback for every log event.
+//
+// level is set to "TRACE", "DEBUG", "INFO", "WARN", "ERROR", "FATAL"
+type LogEventCallbackFunc func(ctx context.Context, level string, message string, err error, additionalFields map[string]string)
