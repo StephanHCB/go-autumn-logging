@@ -2,23 +2,11 @@
 
 Pluggable logging support for go-autumn.
 
-## About go-autumn
-
-A collection of libraries for [enterprise microservices](https://github.com/StephanHCB/go-mailer-service/blob/master/README.md) in golang that
-- is heavily inspired by Spring Boot / Spring Cloud
-- is very opinionated
-- names modules by what they do
-- unlike Spring Boot avoids certain types of auto-magical behaviour
-- is not a library monolith, that is every part only depends on the api parts of the other components
-  at most, and the api parts do not add any dependencies.  
-
-Fall is my favourite season, so I'm calling it go-autumn.
-
 ## About go-autumn-logging
 
 An interface for pluggable logging support with context integration.
 
-This module has zero dependencies, it just provides an interface and a global singleton that is externally
+This module has zero dependencies, it just provides an interface and global singletons that are externally
 supplied with an implementation of said interface.
 
 Any library or go-autumn module that wants to use context-aware logging should depend on this
@@ -37,8 +25,12 @@ In your testing code, call `aulogging.SetupNoLoggerForTesting()` to avoid the ni
 
 ### Application Authors
 
-If you are writing an application, import one of the modules that actually bring in a logging library, 
-such as [go-autumn-logging-zerolog](https://github.com/StephanHCB/go-autumn-logging-zerolog). 
+If you are writing an application, import one of the modules that actually bring in a logging library:
+
+  * [go-autumn-logging-log](https://github.com/StephanHCB/go-autumn-logging-log) using standard log package
+  * [go-autumn-slog](https://github.com/roshick/go-autumn-slog) using standard slog package
+  * [go-autumn-logging-zerolog](https://github.com/StephanHCB/go-autumn-logging-zerolog) using [zerolog](https://github.com/rs/zerolog)
+
 These modules will provide an implementation and place it in the Logger variable.
 
 Of course, you can also provide your own implementation of the `LoggingImplementation` interface, just
