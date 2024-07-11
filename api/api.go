@@ -22,47 +22,47 @@ type LoggingImplementation interface {
 }
 
 type ContextAwareLoggingImplementation interface {
-	// Log using TRACE level (-1).
+	// Trace logs using TRACE level (-1).
 	Trace() LeveledLoggingImplementation
 
-	// Log using DEBUG level (0).
+	// Debug logs using DEBUG level (0).
 	Debug() LeveledLoggingImplementation
 
-	// Log using INFO level (1).
+	// Info logs using INFO level (1).
 	Info() LeveledLoggingImplementation
 
-	// Log using WARN level (2).
+	// Warn logs using WARN level (2).
 	Warn() LeveledLoggingImplementation
 
-	// Log using ERROR level (3).
+	// Error logs using ERROR level (3).
 	Error() LeveledLoggingImplementation
 
-	// Log using FATAL level (4) and exit the application.
+	// Fatal logs using FATAL level (4) and exit the application.
 	//
 	// Note that once application startup is over, this is usually very bad practice.
 	Fatal() LeveledLoggingImplementation
 
-	// Log using PANIC level (5), print a stack trace, and exit the application.
+	// Panic logs using PANIC level (5), print a stack trace, and exit the application.
 	//
 	// Note that this is usually very bad practice.
 	Panic() LeveledLoggingImplementation
 }
 
 type LeveledLoggingImplementation interface {
-	// Add an error to the log message and keep going.
+	// WithErr adds an error to the log message and keeps going.
 	//
 	// This does not actually log anything, you need to follow it up by Print or Printf.
 	WithErr(err error) LeveledLoggingImplementation
 
-	// Add an additional key-value-pair to the log message and keep going.
+	// With adds an additional key-value-pair to the log message and keeps going.
 	//
 	// This does not actually log anything, you need to follow it up by Print or Printf.
 	With(key string, value string) LeveledLoggingImplementation
 
-	// Finalize the log entry and emit it, including all arguments in the message.
+	// Print finalizes the log entry and emits it, including all arguments in the message.
 	Print(v ...interface{})
 
-	// Finalize the log entry and emit it, using a format string for the message.
+	// Printf finalizes the log entry and emits it, using a format string for the message.
 	Printf(format string, v ...interface{})
 }
 
@@ -78,3 +78,7 @@ type RequestIdRetrieverFunc func(ctx context.Context) string
 //
 // level is set to "TRACE", "DEBUG", "INFO", "WARN", "ERROR", "FATAL"
 type LogEventCallbackFunc func(ctx context.Context, level string, message string, err error, additionalFields map[string]string)
+
+// CtxHasLoggerFunc is the type of a function that checks whether a context.Context
+// contains a logger.
+type CtxHasLoggerFunc func(ctx context.Context) bool

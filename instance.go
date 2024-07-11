@@ -1,6 +1,7 @@
 package aulogging
 
 import (
+	"context"
 	"github.com/StephanHCB/go-autumn-logging/api"
 )
 
@@ -18,7 +19,6 @@ import (
 // Application authors:
 // depend on go-autumn-logging-zerolog (or some other variant) which will set this variable on startup, and
 // then you'll be using zerolog.
-//
 var Logger auloggingapi.LoggingImplementation
 
 // RequestIdRetriever is a singleton instance for use by implementations to obtain
@@ -34,17 +34,25 @@ var Logger auloggingapi.LoggingImplementation
 // Application authors:
 // either assign this yourself, or depend on one of the tracing modules.
 //
-//noinspection GoUnusedGlobalVariable
+// noinspection GoUnusedGlobalVariable
 var RequestIdRetriever auloggingapi.RequestIdRetrieverFunc
 
 // DefaultRequestIdValue lets you override the default value for the request id.
 //
 // This is useful for console logging if you want your request ids to align.
 //
-//noinspection GoUnusedGlobalVariable
+// noinspection GoUnusedGlobalVariable
 var DefaultRequestIdValue = ""
 
 // LogEventCallback lets you set up a callback that is called for every log event about to be written
 //
-//noinspection GoUnusedGlobalVariable
+// noinspection GoUnusedGlobalVariable
 var LogEventCallback auloggingapi.LogEventCallbackFunc
+
+func defaultCtxHasLogger(ctx context.Context) bool {
+	return ctx != nil
+}
+
+// CtxHasLogger lets you set up a function that checks whether a context contains
+// a logger.
+var CtxHasLogger auloggingapi.CtxHasLoggerFunc = defaultCtxHasLogger
